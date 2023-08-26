@@ -15,6 +15,10 @@ public class EventCategory extends AbstractEntity {
     @Size(min=3, message="Name must be at least 3 characters long")
     private String name;
 
+    //what's the relationship? define
+    @OneToMany(mappedBy = "eventCategory") //relationship owned by Event. to get, tell hibernate how to get
+    private final List<Event> events = new ArrayList<>(); //will store all events in category
+
     public EventCategory(@Size(min = 3, message = "Name must be at least 3 characters long") String name) {
         this.name = name;
     }
@@ -34,4 +38,7 @@ public class EventCategory extends AbstractEntity {
         return name;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
 }
